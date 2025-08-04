@@ -1,0 +1,279 @@
+#------------------------Cloud New------------------------------------
+spring:
+  application:
+    name: DaasComputers
+
+
+  datasource:
+    url: jdbc:postgresql://ep-polished-poetry-a83w9h9o-pooler.eastus2.azure.neon.tech/DaasComputers?sslmode=require&channel_binding=require
+    username: neondb_owner
+    password: npg_jEfHmDk2t6rW
+    driver-class-name: org.postgresql.Driver
+
+    hikari:
+      minimum-idle: 5                     # ✅ Minimum number of idle connections in the pool
+      maximum-pool-size: 10              # ✅ Max number of total connections (idle + active)
+      connection-timeout: 2000           # ⏱️ Max time (ms) to wait for a connection before throwing exception (2 sec)
+      idle-timeout: 20000                # ⛔ Max idle time (ms) before a connection is removed (20 sec)
+      max-lifetime: 30000                # 🔁 Max lifetime (ms) of a connection before being retired (30 sec)
+      keepalive-time: 15000              # ❤️ Time (ms) to periodically ping idle connections to keep them alive (15 sec)
+      validation-timeout: 1000           # ⏳ Timeout (ms) for validating a connection from the pool (1 sec)
+      initialization-fail-timeout: 1000  # 🚨 Fail-fast timeout (ms) during app startup if DB is unreachable (1 sec)
+      connection-test-query: SELECT 1    # 🧪 Query used to validate connections (when needed)
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 15MB
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        cache:
+          use_second_level_cache: true
+          use_query_cache: false
+          region.factory_class: org.hibernate.cache.jcache.JCacheRegionFactory
+        jdbc:
+          batch_size: 50
+          order_inserts: true
+          order_updates: true
+      javax.cache.provider: org.ehcache.jsr107.EhcacheCachingProvider
+
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=10000,expireAfterAccess=10m
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: tamild17042003@gmail.com
+    password: cnoa zybu ewyk bqkc
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+server:
+  port: 8081
+  ssl:
+    enabled: false
+#    key-store: classpath:keystore.p12
+#    key-store-password: ${SSL_KEYSTORE_PASSWORD}
+#    key-store-type: PKCS12
+#  compression:
+#    enabled: true
+#    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+#    min-response-size: 1024          # Compress only responses > 1KB
+
+
+custom:
+  frontend-url: https://daas-computers.vercel.app
+
+twilio:
+  accountSid: AC428582a231e2e7e107b402744e8cea0b
+  authToken: 28dd54e60b6702b81ae9d54d7312381a
+  fromPhone: "+1 484 673 7949"
+
+
+cloudinary:
+  cloud-name: dgxk7ot2e
+  api-key: 169538859451858
+  api-secret: wI7KExyW6GBPnlCAqd-xzyoNFrc
+
+
+#----------------new code local-------------------------------
+#spring:
+#  application:
+#    name: DaasComputers
+#
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/Spring_Image?createDatabaseIfNotExist=true
+#    username: root
+#    password: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update            # Creates/updates tables based on entities
+#    show-sql: true                # Show SQL in the console
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+#        format_sql: true
+#        use_sql_comments: true
+#
+#  servlet:
+#    multipart:
+#      enabled: true
+#      max-file-size: 10MB
+#      max-request-size: 15MB
+#
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: tamild17042003@gmail.com
+#    password: cnoa zybu ewyk bqkc
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#            required: true
+#
+#  cache:
+#    type: simple  # Options: simple, caffeine, redis, ehcache, etc.
+#
+#server:
+#  port: 8089
+#  compression:
+#    enabled: true
+#    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+#    min-response-size: 1024
+#
+#custom:
+#  frontend-url: http://localhost:3000  # Update if your frontend runs on another port
+#
+#twilio:
+#  accountSid: AC428582a231e2e7e107b402744e8cea0b
+#  authToken: 28dd54e60b6702b81ae9d54d7312381a
+#  fromPhone: "+1 484 673 7949"
+
+
+#----------------------Cloud Old------------------------------------------------------
+
+#spring:
+#  application:
+#    name: DaasComputers
+#
+#  datasource:
+#    url: jdbc:postgresql://ep-polished-poetry-a83w9h9o-pooler.eastus2.azure.neon.tech/DaasComputers?sslmode=require&channel_binding=require
+#    username: neondb_owner
+#    password: npg_jEfHmDk2t6rW
+#    driver-class-name: org.postgresql.Driver
+#
+#    hikari:
+#      minimum-idle: 5
+#      connection-timeout: 5000
+#      max-lifetime: 1500000
+#      maximum-pool-size: 20
+#      idle-timeout: 30000
+#      validation-timeout: 3000
+#
+#  servlet:
+#    multipart:
+#      enabled: true
+#      max-file-size: 10MB
+#      max-request-size: 15MB
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    open-in-view: false
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        cache:
+#          use_second_level_cache: true
+#          use_query_cache: false
+#          region.factory_class: org.hibernate.cache.jcache.JCacheRegionFactory
+#        jdbc:
+#          batch_size: 50
+#          order_inserts: true
+#          order_updates: true
+#      javax.cache.provider: org.ehcache.jsr107.EhcacheCachingProvider
+#
+#  cache:
+#    type: caffeine
+#    caffeine:
+#      spec: maximumSize=10000,expireAfterAccess=10m
+#
+##  flyway:
+##    enabled: true
+##    baseline-on-migrate: true
+##    locations: classpath:db/migration
+##    ignore-unknown-database: true
+#
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: tamild17042003@gmail.com
+#    password: cnoa zybu ewyk bqkc
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#            required: true
+#
+#server:
+#  port: 8081
+#
+#custom:
+#  frontend-url: https://daas-computers.vercel.app
+#
+#twilio:
+#  accountSid: AC428582a231e2e7e107b402744e8cea0b
+#  authToken: 28dd54e60b6702b81ae9d54d7312381a
+#  fromPhone: "+1 484 673 7949"
+
+#-------------------Local Old---------------------------------------------
+#spring:
+#  application:
+#    name: DaasComputers
+#
+#  servlet:
+#    multipart:
+#      enabled: true
+#      max-file-size: 10MB
+#      max-request-size: 15MB
+#
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/Spring_Image?createDatabaseIfNotExist=true
+#    username: root
+#    password: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update  # Creates/updates tables based on entities
+#    show-sql: true       # Show SQL queries in console
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+#        format_sql: true  # Prettify SQL logs
+#        use_sql_comments: true  # Optional: adds comments to SQL output
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: tamild17042003@gmail.com
+#    password: cnoa zybu ewyk bqkc
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#            required: true
+#
+#    cache:
+#          type: simple  # or caffeine, redis, ehcache, etc.
+#
+##custom:
+##  frontend-url: https://daas-computers.vercel.app
+#server:
+#  port: 8089
+#
+#twilio:
+#  accountSid: AC428582a231e2e7e107b402744e8cea0b
+#  authToken: 28dd54e60b6702b81ae9d54d7312381a
+#  fromPhone: "+1 484 673 7949"
