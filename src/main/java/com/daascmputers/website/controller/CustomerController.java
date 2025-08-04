@@ -16,7 +16,8 @@ import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api/customers")
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 @AllArgsConstructor
 public class CustomerController {
     @Autowired

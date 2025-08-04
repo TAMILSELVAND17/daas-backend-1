@@ -26,9 +26,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+
 @RestController
 @RequestMapping("api/product")
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 @AllArgsConstructor
 public class AccessoryController {
     @Autowired
